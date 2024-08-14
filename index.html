@@ -85,23 +85,27 @@
       <div class="container">
         <h2 class="project-title">Telephone Number Validator</h2>
         <div class="project-div blackbox">
-          <label for="number">Enter a phone number: </label>
+          <label for="user-input">Enter a phone number: </label>
           <input
             class="project-input"
-            id="number"
-            name="number"
+            id="user-input"
+            name="user-input"
             value=""
-            type="number"
+            type="text"
           />
           <div class="buttons">
-            <button type="button" class="project-btn button" id="convert-btn">
+            <button type="button" class="project-btn button" id="check-btn">
               Check
             </button>
             <button type="button" class="project-btn button" id="clear-btn">
               Clear
             </button>
           </div>
-          <div class="project-output-div" id="output" for="number"></div>
+          <div
+            class="project-output-div"
+            id="results-div"
+            for="user-input"
+          ></div>
         </div>
       </div>
     </main>
