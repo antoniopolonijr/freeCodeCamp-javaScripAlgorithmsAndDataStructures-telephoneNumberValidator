@@ -16,7 +16,47 @@ const checkUserInput = (originalUserInput) => {
     return; // to break out of this function early. This will prevent future code in this function from running.
   }
 
-  // TODO check if the input is valid
+  const countryCode = "^(1\\s?)?";
+  // ^ Beginning: Matches the beginning of the string, or the beginning of a line if the multiline flag (m) is enabled. This matches a position, not a character.
+  // () Capturing group: Groups multiple tokens together and creates a capture group for extracting a substring or using a backreference.
+  // 1 matches a "1" character
+  // \\ represent a backslash character as part of the string "\"
+  // \s Whitespace: Matches any whitespace character (spaces, tabs, line breaks).
+  // ? Optional: Matches 0 or 1 of the preceding token, effectively making it optional.
+
+  const areaCode = "(\\([0-9]{3}\\)|[0-9]{3})";
+  // \( represents a left parenthesis "("
+  // [] Character Set: Match any character in the set
+  // 0-9 Range: Matches a character having a character code between the two specified characters inclusive.
+  // {3} Quantifier: Matches the specified quantity of the previous token. {1,3} will match 1 to 3. {3} will match exactly 3. {3,} will match 3 or more.
+  // \) represents a right parenthesis ")"
+  // | Alternation: Acts like a boolean OR. Matches the expression before or after the |. It can operate within a group, or on a whole expression. The patterns will be tested in order.
+
+  const spacesDashes = "[\\s\\-]?";
+  // \- represents a "-" character
+
+  const phoneNumber = "[0-9]{3}[\\s\\-]?[0-9]{4}$";
+  // End: Matches the end of the string, or the end of a line if the multiline flag (m) is enabled. This matches a position, not a character.
+
+  const phoneRegex = new RegExp( // RegExp object is used for matching text with a pattern
+    `${countryCode}${areaCode}${spacesDashes}${phoneNumber}`
+  );
+
+  const pTag = document.createElement("p");
+  pTag.className = "results-text"; // sets the value of the class attribute of the specified element.
+  phoneRegex.test(originalUserInput) // The test() method of RegExp instances executes a search with this regular expression for a match between a regular expression and a specified string. Returns true if there is a match; false otherwise.
+    ? (pTag.style.color = "green")
+    : (pTag.style.color = "red");
+  pTag.appendChild(
+    // The appendChild() method of the Node interface adds a node to the end of the list of children of a specified parent node.
+    document.createTextNode(
+      // Creates a text string from the specified value
+      `${
+        phoneRegex.test(originalUserInput) ? "Valid" : "Invalid"
+      } US number: ${originalUserInput}`
+    )
+  );
+  resultsDiv.appendChild(pTag);
 };
 
 // Event Listeners
