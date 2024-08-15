@@ -474,13 +474,13 @@
     overflow-y: auto;
     word-wrap: break-word;
     color: var(--white);
-    font-size: var(--h5);
+    font-size: 15px;
     padding: 4px;
     margin: 0 auto;
     border: 2px solid var(--green);
     text-align: center;
     width: 248px;
-    min-height: 42px;
+    min-height: 34px;
   }
   .hidden {
     display: none;
